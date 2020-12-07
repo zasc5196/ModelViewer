@@ -16,19 +16,68 @@
         height: 100%;
         display: block;
     }
+
+/* //TEST */
+.left,
+       .right {
+           position: absolute;
+           color: #fff;
+           font-family: Geneva, sans-serif;
+       }
+
+       .left {
+           bottom: 1em;
+           left: 1em;
+           text-align: left;
+       }
+
+       .right {
+           top: 1em;
+           right: 1em;
+           text-align: right;
+       }
+
+       a {
+           color: #848484;
+       }
+
     </style>
   </head>
   <body>
     <canvas id="c"></canvas>
+
+
+    <!-- //Logo & Website -->
+    <div class="left">
+            <p><a target="_top">1932 Ford High-Boy</a></p>
+            <p><a href="https://zachschwemler.com/" target="_top">Zachary Schwemler</a></p>
+        </div>
+
+        <a class="right" href="https://github.com/zasc5196/ModelViewer.js" target="_top">
+            <img src="./assets/schwemlerlogo.png">
+        </a>
+
+
+
+
+
+
   </body>
 <script type="module">
 import * as THREE from './three.module.js';
-import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
-import {GLTFLoader} from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/loaders/GLTFLoader.js';
+// import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+import {OrbitControls} from './OrbitControls.js';
+// import {GLTFLoader} from 'https://threejsfundamentals.org/threejs/resources/threejs/r122/examples/jsm/loaders/GLTFLoader.js';
+import {GLTFLoader} from './GLTFLoader.js';
 
 function main() {
   const canvas = document.querySelector('#c');
   const renderer = new THREE.WebGLRenderer({canvas});
+
+// //TEST
+//  renderer.shadowMap.enabled = true;
+//  renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+//  //TEST
 
   const fov = 45;
   const aspect = 2;  // the canvas default
@@ -42,27 +91,27 @@ function main() {
   controls.update();
 
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color('black');
+  scene.background = new THREE.Color('#E4EAF2');
 
   {
-    const planeSize = 40;
-
-    const loader = new THREE.TextureLoader();
-    const texture = loader.load('https://threejsfundamentals.org/threejs/resources/images/checker.png');
-    texture.wrapS = THREE.RepeatWrapping;
-    texture.wrapT = THREE.RepeatWrapping;
-    texture.magFilter = THREE.NearestFilter;
-    const repeats = planeSize / 2;
-    texture.repeat.set(repeats, repeats);
-
-    const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
-    const planeMat = new THREE.MeshPhongMaterial({
-      map: texture,
-      side: THREE.DoubleSide,
-    });
-    const mesh = new THREE.Mesh(planeGeo, planeMat);
-    mesh.rotation.x = Math.PI * -.5;
-    scene.add(mesh);
+    // const planeSize = 40;
+    //
+    // const loader = new THREE.TextureLoader();
+    // const texture = loader.load('https://threejsfundamentals.org/threejs/resources/images/checker.png');
+    // texture.wrapS = THREE.RepeatWrapping;
+    // texture.wrapT = THREE.RepeatWrapping;
+    // texture.magFilter = THREE.NearestFilter;
+    // const repeats = planeSize / 2;
+    // texture.repeat.set(repeats, repeats);
+    //
+    // const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+    // const planeMat = new THREE.MeshPhongMaterial({
+    //   map: texture,
+    //   side: THREE.DoubleSide,
+    // });
+    // const mesh = new THREE.Mesh(planeGeo, planeMat);
+    // mesh.rotation.x = Math.PI * -.5;
+    // scene.add(mesh);
   }
 
   {
@@ -77,9 +126,21 @@ function main() {
     const color = 0xFFFFFF;
     const intensity = 1;
     const light = new THREE.DirectionalLight(color, intensity);
-    light.position.set(5, 10, 2);
+
+    // light.position.set(5, 10, 2);
+    light.position.set(30, 50, 2);
     scene.add(light);
     scene.add(light.target);
+
+    // //TEST AREA *********
+    // light.castShadow = true; // default false
+    // scene.add( light );
+    // //Set up shadow properties for the light
+    // light.shadow.mapSize.width = 512; // default
+    // light.shadow.mapSize.height = 512; // default
+    // light.shadow.camera.near = 0.5; // default
+    // light.shadow.camera.far = 500; // default
+    // //TEST AREA ***********
   }
 
   function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
