@@ -109,8 +109,30 @@ illum 5
 
 
 
-newmtl StandardAFABAB
-Kd  0.6862745 0.67058824 0.67058824
+newmtl Cartoon4A4A4A
+Kd  0.29019604 0.29019604 0.29019604
+Ks  00 00 00
+Ka  00 00 00
+d  01
+Ns  00
+illum 2
+
+
+
+
+newmtl Reflective4A4A4A
+Kd  0.29019604 0.29019604 0.29019604
+Ks  0.8 0.8 0.8
+Ka  00 00 00
+d  01
+Ns  925
+illum 5
+
+
+
+
+newmtl Standard9C9386
+Kd  0.6117647 0.5764706 0.52549024
 Ks  00 00 00
 Ka  00 00 00
 d  01
@@ -122,17 +144,6 @@ illum 2
 
 newmtl Reflective898989
 Kd  0.5372549 0.5372549 0.5372549
-Ks  0.8 0.8 0.8
-Ka  00 00 00
-d  01
-Ns  925
-illum 5
-
-
-
-
-newmtl Reflective4A4A4A
-Kd  0.29019604 0.29019604 0.29019604
 Ks  0.8 0.8 0.8
 Ka  00 00 00
 d  01
@@ -210,39 +221,6 @@ illum 5
 
 newmtl Standard737373
 Kd  0.4509804 0.4509804 0.4509804
-Ks  00 00 00
-Ka  00 00 00
-d  01
-Ns  00
-illum 2
-
-
-
-
-newmtl ReflectiveDBC252
-Kd  0.85882352 0.7607843 0.32156862
-Ks  0.8 0.8 0.8
-Ka  00 00 00
-d  01
-Ns  925
-illum 5
-
-
-
-
-newmtl Reflective49371F
-Kd  0.28627452 0.21568624 0.12156864
-Ks  0.8 0.8 0.8
-Ka  00 00 00
-d  01
-Ns  925
-illum 5
-
-
-
-
-newmtl Cartoon4A4A4A
-Kd  0.29019604 0.29019604 0.29019604
 Ks  00 00 00
 Ka  00 00 00
 d  01
