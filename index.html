@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Three.js - Load .OBJ ?</title>
+    <title>Zach Schwemler Model Viewer</title>
     <style>
     html, body {
         margin: 0;
@@ -22,7 +22,8 @@
        .right {
            position: absolute;
            color: #fff;
-           font-family: Geneva, sans-serif;
+           /* font-family: Geneva, sans-serif; */
+           /* font-family: Helvetica, sans-serif; */
        }
 
        .left {
@@ -39,6 +40,7 @@
 
        a {
            color: #848484;
+           font-family: Helvetica, sans-serif;
        }
 
     </style>
@@ -49,8 +51,9 @@
 
     <!-- //Logo & Website -->
     <div class="left">
-            <p><a target="_top">1932 Ford High-Boy</a></p>
-            <p><a href="https://zachschwemler.com/" target="_top">zachschwemler.com</a></p>
+            <!-- <p><a target="_top">1932 Ford High-Boy</a></p>
+            <p><a target="_top">Modeled in virtual reality, displayed in Three.js</a></p>
+            <p><a href="https://zachschwemler.com/" target="_top">ZachSchwemler.com</a></p> -->
         </div>
 
         <a class="right" href="https://github.com/zasc5196/ModelViewer.js" target="_top">
@@ -73,12 +76,6 @@ import {GLTFLoader} from './GLTFLoader.js';
 function main() {
   const canvas = document.querySelector('#c');
   const renderer = new THREE.WebGLRenderer({canvas});
-
-// //TEST
-//  renderer.shadowMap.enabled = true;
-//  renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
-//  //TEST
-
   const fov = 45;
   const aspect = 2;  // the canvas default
   const near = 0.1;
@@ -92,6 +89,8 @@ function main() {
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color('#E4EAF2');
+
+
 
   {
     // const planeSize = 40;
@@ -114,6 +113,7 @@ function main() {
     // scene.add(mesh);
   }
 
+
   {
     const skyColor = 0xB1E1FF;  // light blue
     const groundColor = 0xB97A20;  // brownish orange
@@ -128,7 +128,8 @@ function main() {
     const light = new THREE.DirectionalLight(color, intensity);
 
     // light.position.set(5, 10, 2);
-    light.position.set(30, 50, 2);
+    // light.position.set(30, 50, 2);
+    // light.position.set(0, 500, 0);
     scene.add(light);
     scene.add(light.target);
 
@@ -172,9 +173,15 @@ function main() {
   {
     const gltfLoader = new GLTFLoader();
     // gltfLoader.load('https://github.com/zasc5196/ModelViewer/blob/main/ModelTest.gltf', (gltf) => {
-      gltfLoader.load('./assets/schwemler32ford.gltf', (gltf) => {
+      // gltfLoader.load('./assets/schwemler32ford.gltf', (gltf) => {
+      gltfLoader.load('./assets/Schwemler_32Ford.gltf', (gltf) => {
       const root = gltf.scene;
       scene.add(root);
+
+
+      // const model = gltf.scene.children[6];
+      // model.children[0].material.metalness = 0;
+      // model.children[1].material.metalness = 0;
 
       // compute the box that contains all the stuff
       // from root and below
@@ -212,6 +219,9 @@ function main() {
     }
 
     renderer.render(scene, camera);
+
+    //TEST
+    renderer.gammaOutput = true;
 
     requestAnimationFrame(render);
   }
